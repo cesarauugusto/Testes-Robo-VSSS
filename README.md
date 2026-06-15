@@ -1,9 +1,9 @@
 # 🤖⚽ VSSS Open Platform
 
 <p align="center">
-  <img src="./public/images/ieee.png" alt="Logo IEEE" width="90"/>
+  <img src="./site/public/images/ieee.png" alt="Logo IEEE" width="90"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./public/images/logo-ifce.png" alt="Logo IFCE" width="150"/>
+  <img src="./site/public/images/logo-ifce.png" alt="Logo IFCE" width="150"/>
 </p>
 
 <h2 align="center">
@@ -34,19 +34,17 @@
 
 | Função                    | Nome                                                                    |
 | ------------------------- | ----------------------------------------------------------------------- |
-| **Autor / Desenvolvedor** | **César Augusto**                                                       |
-| **Orientador**            | **Prof. Aldinei**                                                       |
-| **Coorientador**          | **Prof. Tabosa**                                                        |
+| **Autor / Desenvolvedor** | **César Augusto Victor**                                                |
+| **Orientador**            | **Prof. Francisco Aldinei Pereira Aragão**                              |
+| **Coorientador**          | **Prof. Leonardo Tabosa Albuquerque**                                   |
 | **Instituição**           | **Instituto Federal de Educação, Ciência e Tecnologia do Ceará — IFCE** |
-| **Categoria**             | **IEEE Very Small Size Soccer — VSSS**                                  |
-| **Tipo de projeto**       | **Pesquisa, desenvolvimento e documentação open source**                |
 
 ---
 
 ## 🏫 Instituição
 
 <p align="center">
-  <img src="./public/images/logo-ifce.png" alt="Logo IFCE" width="160"/>
+  <img src="./site/public/images/logo-ifce.png" alt="Logo IFCE" width="160"/>
 </p>
 
 <p align="center">
@@ -58,9 +56,9 @@
 ## 🛠️ Tecnologias principais
 
 <p align="center">
-  <img src="./public/images/ubuntu.png" alt="Logo Ubuntu" width="110"/>
+  <img src="./site/public/images/ubuntu.png" alt="Logo Ubuntu" width="110"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./public/images/ros.png" alt="Logo ROS" width="150"/>
+  <img src="./site/public/images/ros.png" alt="Logo ROS" width="150"/>
 </p>
 
 <p align="center">
