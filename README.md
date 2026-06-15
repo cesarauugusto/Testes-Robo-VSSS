@@ -41,36 +41,6 @@
 
 ---
 
-## 🏫 Instituição
-
-<p align="center">
-  <img src="./site/public/images/logo-ifce.png" alt="Logo IFCE" width="160"/>
-</p>
-
-<p align="center">
-  <strong>Instituto Federal de Educação, Ciência e Tecnologia do Ceará — IFCE</strong>
-</p>
-
----
-
-## 🛠️ Tecnologias principais
-
-<p align="center">
-  <img src="./site/public/images/ubuntu.png" alt="Logo Ubuntu" width="110"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="./site/public/images/ros.png" alt="Logo ROS" width="150"/>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Em%20desenvolvimento-198754?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Ubuntu-20.04-E95420?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/ROS-Noetic-22314a?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/OpenCV-Visão%20Computacional-5C3EE8?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge"/>
-</p>
-
----
-
 ## 📌 Sobre o projeto
 
 O **VSSS Open Platform** é uma plataforma aberta criada para apresentar, organizar e documentar um sistema de futebol de robôs da categoria **IEEE Very Small Size Soccer — VSSS**.
