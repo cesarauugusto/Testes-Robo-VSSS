@@ -56,9 +56,9 @@ export default function SistemaFuncionamento() {
 
         <p>
           Esta seção explica o funcionamento completo do sistema de forma
-          didática: primeiro a conexão do robô, depois o teste da câmera, a
-          calibração HSV, a identificação dos objetos, o controle PID, as
-          estratégias e, por fim, a execução do sistema completo.
+          didática: primeiro a conexão do robô, depois a calibração HSV, a
+          identificação dos objetos, o controle PID, as estratégias e, por fim,
+          a execução do sistema completo.
         </p>
       </div>
 
@@ -101,15 +101,9 @@ export default function SistemaFuncionamento() {
           />
 
           <RepoCard
-            title="Código para o ESP8266"
-            description="Código que deve ser gravado no ESP8266 para que o robô receba comandos do computador e acione corretamente os motores."
+            title="Código para o ESP"
+            description="Código que deve ser gravado no ESP32 ou ESP8266 para que o robô receba comandos do computador e acione corretamente os motores."
             link={`${repoBase}/tree/main/Controle%20do%20robo%20pelo%20teclado%20-%20WASD/Codigo_para_ESP`}
-          />
-
-          <RepoCard
-            title="Identificando cor e posição do objeto"
-            description="Código recomendado para testar a câmera e verificar se o sistema consegue identificar cores e posições na imagem antes de aplicar a estratégia completa."
-            link={`${repoBase}/tree/main/Identificando%20cor%20e%20posicao%20do%20objeto`}
           />
 
           <RepoCard
@@ -153,14 +147,14 @@ export default function SistemaFuncionamento() {
         </p>
 
         <p>
-          Para esse teste funcionar, o ESP8266 precisa estar com o código correto
+          Para esse teste funcionar, o ESP precisa estar com o código correto
           gravado. Esse código fica na pasta:
         </p>
 
         <CodeBlock label="Caminho no GitHub">{`Controle do robo pelo teclado - WASD/Codigo_para_ESP`}</CodeBlock>
 
         <p>
-          Depois que o ESP8266 estiver programado, o computador poderá enviar
+          Depois que o ESP estiver programado, o computador poderá enviar
           comandos para o robô. Essa etapa é importante porque confirma se a
           comunicação e o acionamento dos motores estão funcionando antes de
           avançar para o sistema com câmera e visão computacional.
@@ -170,6 +164,7 @@ export default function SistemaFuncionamento() {
           <li>Ligue o robô.</li>
           <li>Verifique se o robô está conectado à mesma rede do computador.</li>
           <li>Inicie o ROS Master no computador.</li>
+          <li>Execute o rosserial_python para conectar o ROS ao ESP.</li>
           <li>Execute o código de controle pelo teclado.</li>
           <li>Envie comandos WASD e observe se os motores respondem.</li>
         </ol>
@@ -177,6 +172,19 @@ export default function SistemaFuncionamento() {
         <p>Abra o terminal e execute:</p>
 
         <CodeBlock>{`roscore`}</CodeBlock>
+
+        <p>
+          Com o ROS Master ativo, abra outro terminal e execute o nó de
+          comunicação com o ESP usando o <strong>rosserial_python</strong>:
+        </p>
+
+        <CodeBlock>{`rosrun rosserial_python serial_node.py tcp 11411`}</CodeBlock>
+
+        <p>
+          Esse comando é necessário para que o ESP32 ou ESP8266 consiga se
+          conectar ao computador pela rede e receber os comandos publicados pelo
+          ROS. Ele deve permanecer rodando durante o teste com o controle WASD.
+        </p>
 
         <p>
           Depois, em outro terminal, acesse a pasta do teste WASD e execute o
@@ -198,68 +206,27 @@ python3 nome_do_codigo_wasd.py`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>4. Segundo teste: câmera, cor e posição do objeto</h2>
+        <h2>4. Código de calibração HSV</h2>
 
         <p>
-          Após validar a conexão com o robô, o próximo teste recomendado é a
-          câmera. Para isso, pode-se utilizar o código da pasta{" "}
-          <strong>Identificando cor e posição do objeto</strong>. Esse teste
-          permite verificar se a câmera está funcionando e se o sistema consegue
-          identificar objetos coloridos na imagem.
+          Após validar a conexão com o robô, a próxima etapa recomendada é a
+          calibração das cores. Essa etapa é essencial porque o sistema depende
+          da identificação correta da bola e dos marcadores coloridos do robô
+          para calcular posição, orientação e estratégia.
         </p>
 
         <p>
-          Esse passo é importante porque o sistema depende da imagem para tomar
-          decisões. Se a câmera não estiver capturando corretamente, ou se as
-          cores não estiverem bem identificadas, o robô pode se orientar de forma
-          errada dentro do campo.
-        </p>
-
-        <ImageCard
-          src="/images/robo-bola-camera.png"
-          alt="Robô e bola capturados pela câmera"
-          caption="Imagem inicial capturada pela câmera, contendo o robô, os marcadores coloridos e a bola."
-        />
-
-        <p>Com o ROS Master ativo, abra outro terminal e execute a câmera:</p>
-
-        <CodeBlock>{`roslaunch usb_cam usb_cam.launch`}</CodeBlock>
-
-        <p>
-          Em seguida, execute o código de identificação de cor e posição do
-          objeto:
-        </p>
-
-        <CodeBlock>{`cd ~/catkin_ws/src
-python3 nome_do_codigo_de_cor_e_posicao.py`}</CodeBlock>
-
-        <a
-          className="botaoDocumento"
-          href={`${repoBase}/tree/main/Identificando%20cor%20e%20posicao%20do%20objeto`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Acessar código de cor e posição
-        </a>
-      </div>
-
-      <div className="sistemaSection">
-        <h2>5. Código de calibração HSV</h2>
-
-        <p>
-          O código de calibração é uma das partes mais importantes do projeto.
-          Ele permite descobrir os valores HSV de cada cor usada no sistema,
-          como a cor da bola e as cores dos marcadores posicionados sobre o
-          robô.
-        </p>
-
-        <p>
-          Na prática, o usuário coloca o robô ou a bola na frente da câmera e
-          ajusta as barras deslizantes de <strong>H</strong>,{" "}
+          O código de calibração permite descobrir os valores HSV de cada cor
+          usada no sistema. Na prática, o usuário coloca o robô ou a bola na
+          frente da câmera e ajusta as barras deslizantes de <strong>H</strong>,{" "}
           <strong>S</strong> e <strong>V</strong>. À medida que os valores são
-          alterados, uma máscara é criada em tempo real. O que não pertence à
-          cor desejada fica preto, e a cor escolhida permanece destacada na
-          imagem.
+          alterados, uma máscara é criada em tempo real.
+        </p>
+
+        <p>
+          O que não pertence à cor desejada fica preto, e a cor escolhida
+          permanece destacada na imagem. Assim, o usuário consegue encontrar os
+          limites inferiores e superiores que serão usados no algoritmo principal.
         </p>
 
         <p>
@@ -309,7 +276,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>6. Fluxograma real gerado pelo ROS</h2>
+        <h2>5. Fluxograma real gerado pelo ROS</h2>
 
         <p>
           O ROS permite visualizar a comunicação entre os nós do sistema usando
@@ -336,7 +303,8 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
         <p>
           De forma geral, a câmera publica a imagem em um tópico do ROS. O
           algoritmo de visão recebe essa imagem, processa os dados, calcula os
-          comandos e publica as velocidades que serão enviadas ao robô.
+          comandos e publica as velocidades. O rosserial_python mantém a conexão
+          com o ESP para que esses comandos cheguem ao robô.
         </p>
 
         <div className="fluxoSistema fluxoClaro">
@@ -344,16 +312,18 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           <strong>→</strong>
           <span>/usb_cam/image_raw</span>
           <strong>→</strong>
-          <span>/RoboESP32</span>
+          <span>Algoritmo Python</span>
           <strong>→</strong>
           <span>/velocidade_motores</span>
           <strong>→</strong>
-          <span>WeMos ESP8266</span>
+          <span>rosserial_python</span>
+          <strong>→</strong>
+          <span>ESP</span>
         </div>
       </div>
 
       <div className="sistemaSection">
-        <h2>7. Detecção da posição e orientação do robô</h2>
+        <h2>6. Detecção da posição e orientação do robô</h2>
 
         <p>
           Depois de calibrar as cores, o sistema calcula a posição dos objetos
@@ -389,7 +359,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>8. Detecção das linhas do campo</h2>
+        <h2>7. Detecção das linhas do campo</h2>
 
         <p>
           Além da bola e do robô, o sistema também precisa reconhecer regiões do
@@ -419,7 +389,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>9. Controle PID aplicado ao robô</h2>
+        <h2>8. Controle PID aplicado ao robô</h2>
 
         <p>
           O controle PID foi utilizado para corrigir a orientação do robô em
@@ -450,7 +420,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>10. Estratégia do robô atacante</h2>
+        <h2>9. Estratégia do robô atacante</h2>
 
         <p>
           A estratégia do atacante foi organizada em estados. Quando o robô está
@@ -482,7 +452,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>11. Estratégia do goleiro</h2>
+        <h2>10. Estratégia do goleiro</h2>
 
         <p>
           O goleiro utiliza uma estratégia diferente. Quando a bola está longe,
@@ -500,7 +470,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection">
-        <h2>12. Resultados observados no RViz</h2>
+        <h2>11. Resultados observados no RViz</h2>
 
         <p>
           Os testes foram acompanhados no RViz. A visualização das trajetórias
@@ -531,14 +501,14 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
       </div>
 
       <div className="sistemaSection destaque">
-        <h2>13. Como rodar o sistema completo</h2>
+        <h2>12. Como rodar o sistema completo</h2>
 
         <p>
           Para executar o sistema completo, é necessário seguir uma ordem de
           inicialização. Primeiro, o robô deve estar com o código correto gravado
-          no ESP8266. Depois, no computador, deve-se iniciar o ROS Master,
-          executar a câmera USB e, por fim, rodar o código correspondente ao robô
-          que será testado.
+          no ESP. Depois, no computador, deve-se iniciar o ROS Master, executar o
+          rosserial_python, iniciar a câmera USB e, por fim, rodar o código
+          correspondente ao robô que será testado.
         </p>
 
         <p>
@@ -549,9 +519,9 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
         </p>
 
         <p>
-          Antes de rodar os códigos no computador, o ESP8266 do robô precisa
-          estar com o código embarcado correto. O código que deve ser enviado
-          para o ESP está na pasta:
+          Antes de rodar os códigos no computador, o ESP do robô precisa estar
+          com o código embarcado correto. O código que deve ser enviado para o
+          ESP está na pasta:
         </p>
 
         <CodeBlock label="Caminho no GitHub">{`Controle do robo pelo teclado - WASD/Codigo_para_ESP`}</CodeBlock>
@@ -569,7 +539,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           target="_blank"
           rel="noreferrer"
         >
-          Acessar código para o ESP8266
+          Acessar código para o ESP
         </a>
 
         <hr className="divisorInterno" />
@@ -578,7 +548,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
 
         <p>
           Com o robô ligado, conectado à mesma rede do computador e com o código
-          já gravado no ESP8266, execute os passos abaixo.
+          já gravado no ESP32 ou ESP8266, execute os passos abaixo.
         </p>
 
         <p>1. Abra o terminal e inicie o ROS Master:</p>
@@ -590,7 +560,17 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           aberto durante todo o funcionamento do sistema.
         </p>
 
-        <p>2. Abra um novo terminal e execute a câmera USB:</p>
+        <p>2. Abra um novo terminal e execute o nó de comunicação com o ESP:</p>
+
+        <CodeBlock>{`rosrun rosserial_python serial_node.py tcp 11411`}</CodeBlock>
+
+        <p>
+          Esse comando inicia a comunicação entre o ROS e o ESP usando o{" "}
+          <strong>rosserial_python</strong>. Ele deve permanecer rodando para que
+          o robô receba os comandos enviados pelo computador.
+        </p>
+
+        <p>3. Abra um novo terminal e execute a câmera USB:</p>
 
         <CodeBlock>{`roslaunch usb_cam usb_cam.launch`}</CodeBlock>
 
@@ -599,17 +579,18 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           capturadas em um tópico do ROS.
         </p>
 
-        <p>3. Abra um novo terminal e verifique se os tópicos foram criados:</p>
+        <p>4. Abra um novo terminal e verifique se os tópicos foram criados:</p>
 
         <CodeBlock>{`rostopic list`}</CodeBlock>
 
         <p>
           Verifique se aparecem tópicos relacionados à câmera, como{" "}
-          <strong>/usb_cam/image_raw</strong>. Isso indica que a câmera está
-          publicando as imagens corretamente.
+          <strong>/usb_cam/image_raw</strong>, e também tópicos relacionados à
+          comunicação com o robô. Isso indica que a câmera e a comunicação ROS
+          com o ESP estão ativas.
         </p>
 
-        <p>4. Acesse a pasta dos programas finais:</p>
+        <p>5. Acesse a pasta dos programas finais:</p>
 
         <CodeBlock>{`cd ~/catkin_ws/src/Programas\\ Finais`}</CodeBlock>
 
@@ -618,7 +599,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           de acordo com a organização do seu workspace.
         </p>
 
-        <p>5. Para testar o robô goleiro, execute:</p>
+        <p>6. Para testar o robô goleiro, execute:</p>
 
         <CodeBlock>{`python3 goleiro.py`}</CodeBlock>
 
@@ -628,7 +609,7 @@ mask_blue = cv2.inRange(hsv_image, lower_blue, upper_blue)`}</CodeBlock>
           aproxima da região do gol.
         </p>
 
-        <p>6. Para testar o jogador de linha, execute:</p>
+        <p>7. Para testar o jogador de linha, execute:</p>
 
         <CodeBlock>{`python3 jogador.py`}</CodeBlock>
 

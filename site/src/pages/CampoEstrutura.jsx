@@ -83,8 +83,8 @@ export default function CampoEstrutura() {
             <p>
               O protótipo do robô foi modelado em software 3D respeitando o
               limite dimensional da categoria. A estrutura foi projetada para
-              acomodar os motores, a bateria, a placa controladora e o shield de
-              acionamento dos motores.
+              acomodar os motores, a bateria, a placa controladora e os
+              componentes responsáveis pelo acionamento do sistema.
             </p>
 
             <p>
@@ -127,6 +127,195 @@ export default function CampoEstrutura() {
             </a>
           </div>
         </article>
+      </div>
+
+      <div className="secaoInterna">
+        <h3>Componentes eletrônicos e mecânicos escolhidos</h3>
+
+        <p>
+          A escolha dos componentes eletrônicos e mecânicos foi uma etapa
+          essencial no desenvolvimento do robô, pois a categoria Very Small Size
+          Soccer exige uma estrutura compacta, leve e capaz de responder
+          rapidamente aos comandos do sistema. Por isso, os componentes foram
+          selecionados considerando critérios como tamanho físico, capacidade de
+          processamento, comunicação sem fio, facilidade de montagem, acionamento
+          dos motores e alimentação elétrica.
+        </p>
+
+        <p>
+          O conjunto foi organizado para caber dentro da carcaça do robô,
+          facilitar a integração com o ROS e permitir o controle dos motores de
+          forma estável. A seguir são apresentados os principais componentes
+          utilizados no projeto e a justificativa técnica para cada escolha.
+        </p>
+
+        <div className="componentesGrid">
+          <article className="componenteCard">
+            <div className="componenteImagemBox">
+              <img
+                src={imagePath("esp32.png")}
+                alt="Placa WeMos D1 R2 WiFi ESP8266 utilizada no robô"
+              />
+            </div>
+
+            <div className="componenteTexto">
+              <span className="componenteTag">Controle embarcado</span>
+
+              <h4>Placa WeMos D1 R2 WiFi ESP8266</h4>
+
+              <p>
+                A escolha do microcontrolador é essencial para o robô, pois é
+                por meio dele que os comandos enviados pelo sistema são
+                recebidos, interpretados e convertidos em sinais de controle para
+                os motores. No projeto, foi utilizada a placa{" "}
+                <strong>WeMos D1 R2 WiFi ESP8266</strong>, baseada no
+                microcontrolador <strong>ESP8266EX</strong>, desenvolvido pela
+                Espressif Systems.
+              </p>
+
+              <p>
+                Essa placa foi escolhida principalmente por possuir{" "}
+                <strong>Wi-Fi integrado</strong>, o que elimina a necessidade de
+                módulos externos de comunicação sem fio. Isso reduz a quantidade
+                de componentes embarcados, simplifica a montagem elétrica e
+                diminui o espaço necessário dentro da carcaça do robô.
+              </p>
+
+              <p>
+                Outro fator importante é o formato da placa, que facilita a
+                integração com shields compatíveis e permite uma montagem mais
+                organizada. No sistema, a WeMos recebe os comandos provenientes
+                do ROS, via comunicação sem fio, e os repassa para o estágio de
+                acionamento dos motores.
+              </p>
+            </div>
+          </article>
+
+          <article className="componenteCard">
+            <div className="componenteImagemBox">
+              <img
+                src={imagePath("ponteh.png")}
+                alt="L298P Motor Shield utilizado para acionar os motores"
+              />
+            </div>
+
+            <div className="componenteTexto">
+              <span className="componenteTag">Acionamento dos motores</span>
+
+              <h4>L298P Motor Shield</h4>
+
+              <p>
+                Para controlar os motores do robô, foi utilizado o{" "}
+                <strong>L298P Motor Shield</strong>, baseado no chip{" "}
+                <strong>L298P</strong>, desenvolvido pela STMicroelectronics.
+                Esse componente atua como estágio de potência entre a placa
+                controladora e os motores, pois o microcontrolador não é capaz de
+                fornecer diretamente a corrente necessária para movimentar o
+                robô.
+              </p>
+
+              <p>
+                Esse driver é capaz de acionar dois motores simultaneamente, com
+                corrente de acionamento de até <strong>2 A</strong>. Essa
+                característica atende à configuração diferencial do robô, na qual
+                as rodas direita e esquerda precisam ser controladas de forma
+                independente para permitir avanço, recuo, curvas e correções de
+                orientação.
+              </p>
+
+              <p>
+                A escolha desse shield também foi motivada pela facilidade de
+                conexão direta com a WeMos D1 R2 WiFi ESP8266. Essa característica
+                simplifica a montagem, reduz a quantidade de fios e torna o
+                sistema mais compacto, fator importante para um robô de dimensões
+                reduzidas.
+              </p>
+            </div>
+          </article>
+
+          <article className="componenteCard">
+            <div className="componenteImagemBox">
+              <img
+                src={imagePath("motor.png")}
+                alt="Micro Motor Gearbox utilizado no robô"
+              />
+            </div>
+
+            <div className="componenteTexto">
+              <span className="componenteTag">Sistema de locomoção</span>
+
+              <h4>Micro Motor Gearbox Pololu 600 rpm / 6 V</h4>
+
+              <p>
+                O motor utilizado no projeto foi o{" "}
+                <strong>Micro Motor Gearbox</strong>, da Pololu, com velocidade
+                de aproximadamente <strong>600 rpm a vazio</strong> e tensão
+                nominal de <strong>6 V</strong>. Esse tipo de motor é adequado
+                para robôs móveis compactos porque combina motor DC com uma
+                caixa de redução mecânica.
+              </p>
+
+              <p>
+                A caixa de redução é importante porque melhora a relação entre
+                velocidade e torque. Em vez de utilizar apenas um motor DC comum,
+                o motor com redução permite uma resposta mecânica mais
+                controlável, facilitando ajustes de velocidade, mudanças de
+                direção e correções de trajetória feitas pelo algoritmo.
+              </p>
+
+              <p>
+                Em um robô diferencial, no qual cada roda é controlada de forma
+                independente, pequenas variações na velocidade dos motores são
+                usadas para girar o robô, alinhar sua direção com a bola e
+                executar as estratégias de movimentação. Por isso, motores com
+                caixa de redução são mais adequados para o controle fino do
+                deslocamento do robô.
+              </p>
+            </div>
+          </article>
+
+          <article className="componenteCard">
+            <div className="componenteImagemBox">
+              <img
+                src={imagePath("bateria.png")}
+                alt="Bateria LiPo 2S utilizada no robô"
+              />
+            </div>
+
+            <div className="componenteTexto">
+              <span className="componenteTag">Alimentação elétrica</span>
+
+              <h4>Bateria LiPo 2S 7,4 V / 500 mAh / 35C</h4>
+
+              <p>
+                Para alimentar o robô, foi utilizada uma bateria{" "}
+                <strong>Lithium Polymer (LiPo)</strong> de{" "}
+                <strong>2 células</strong>, com dimensões aproximadas de{" "}
+                <strong>55 mm por 30 mm</strong>, tensão nominal de{" "}
+                <strong>7,4 V</strong>, capacidade de <strong>500 mAh</strong>{" "}
+                e regime de descarga de <strong>35C</strong>.
+              </p>
+
+              <p>
+                A escolha dessa bateria está relacionada à necessidade de
+                fornecer energia suficiente para o conjunto eletrônico e para os
+                motores, sem ocupar muito espaço dentro da carcaça. Como o robô
+                possui dimensões reduzidas, a bateria precisa ser compacta, leve
+                e capaz de fornecer corrente adequada durante acelerações,
+                mudanças de direção e correções rápidas de movimento.
+              </p>
+
+              <p>
+                A tensão nominal de 7,4 V é compatível com a alimentação do
+                estágio de potência dos motores, enquanto a capacidade de 500 mAh
+                atende aos testes práticos do protótipo. O regime de descarga de
+                35C também é relevante, pois indica a capacidade da bateria de
+                fornecer corrente em momentos de maior demanda, como arrancadas e
+                manobras rápidas.
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
 
       <div className="secaoInterna">

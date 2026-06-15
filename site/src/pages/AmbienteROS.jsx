@@ -38,7 +38,8 @@ export default function AmbienteROS() {
           Esta seção apresenta o processo utilizado para preparar o ambiente de
           desenvolvimento do projeto VSSS. A etapa inclui a instalação do ROS
           Noetic, a configuração do ambiente no Ubuntu, a instalação do pacote
-          usb_cam e a validação da câmera USB no RViz.
+          usb_cam, a escolha da câmera USB, a validação da câmera no RViz e a
+          comunicação do ROS com o ESP usando rosserial_python.
         </p>
 
         <p>
@@ -69,6 +70,11 @@ export default function AmbienteROS() {
         <div>
           <h3>Visualização</h3>
           <p>RViz e rqt_image_view</p>
+        </div>
+
+        <div>
+          <h3>Comunicação com o robô</h3>
+          <p>rosserial_python</p>
         </div>
       </div>
 
@@ -303,7 +309,44 @@ catkin_make`}</CodeBlock>
       </div>
 
       <div className="ambienteSection">
-        <h2>4. Configuração do arquivo usb_cam.launch</h2>
+        <h2>4. Escolha da câmera USB</h2>
+
+        <p>
+          Para a captura das imagens do campo, foi utilizada a câmera{" "}
+          <strong>
+            Webcam C3Tech WB-70BK HD 720p com microfone e USB 2.0, na cor preta
+          </strong>
+          . Essa câmera foi suficiente para os testes iniciais do projeto,
+          permitindo capturar a imagem do campo, identificar a bola e realizar a
+          calibração das cores utilizadas no sistema.
+        </p>
+
+        <p>
+          Para estudantes iniciantes que desejam reproduzir o projeto, uma câmera
+          desse tipo já permite realizar os primeiros testes com ROS, usb_cam,
+          calibração HSV e visão computacional. Porém, para melhorar o
+          desempenho do sistema principal, recomenda-se utilizar uma câmera com
+          maior taxa de quadros por segundo, ou seja, com mais{" "}
+          <strong>FPS</strong>.
+        </p>
+
+        <p>
+          Uma câmera com maior quantidade de FPS tende a reduzir atrasos na
+          imagem e diminuir o delay entre o movimento real do robô e a imagem
+          processada pelo computador. Isso é importante principalmente em
+          aplicações com visão computacional em tempo real, nas quais o robô
+          precisa reagir rapidamente à posição da bola e às mudanças no campo.
+        </p>
+
+        <p>
+          Portanto, a Webcam C3Tech WB-70BK HD 720p pode ser usada para iniciar
+          o projeto, mas, em versões mais avançadas, uma câmera com maior FPS
+          pode trazer melhores resultados para a execução do sistema completo.
+        </p>
+      </div>
+
+      <div className="ambienteSection">
+        <h2>5. Configuração do arquivo usb_cam.launch</h2>
 
         <p>
           O arquivo <strong>usb_cam.launch</strong> define os parâmetros usados
@@ -376,7 +419,7 @@ catkin_make`}</CodeBlock>
       </div>
 
       <div className="ambienteSection">
-        <h2>5. Teste da câmera no ROS</h2>
+        <h2>6. Teste da câmera no ROS</h2>
 
         <Step number="01" title="Iniciar o ROS Master">
           <p>
@@ -426,7 +469,7 @@ catkin_make`}</CodeBlock>
       </div>
 
       <div className="ambienteSection">
-        <h2>6. Visualização da câmera no RViz</h2>
+        <h2>7. Visualização da câmera no RViz</h2>
 
         <p>
           O RViz é uma ferramenta gráfica do ROS utilizada para visualizar dados
@@ -463,6 +506,72 @@ catkin_make`}</CodeBlock>
         <p>Abra o terminal e execute:</p>
 
         <CodeBlock>{`rosrun rqt_image_view rqt_image_view`}</CodeBlock>
+      </div>
+
+      <div className="ambienteSection">
+        <h2>8. Comunicação do ROS com o ESP usando rosserial_python</h2>
+
+        <p>
+          Além da câmera USB e do processamento de imagem, o sistema também
+          precisa estabelecer comunicação entre o computador e o microcontrolador
+          do robô. Para isso, foi utilizado o{" "}
+          <strong>rosserial_python</strong>, responsável por criar a conexão
+          entre o ROS e o ESP32 ou ESP8266.
+        </p>
+
+        <p>
+          No projeto, o ESP fica embarcado no robô e deve estar conectado à mesma
+          rede do computador. Enquanto isso, no computador, o ROS executa o nó do{" "}
+          <strong>rosserial_python</strong>, que permite que o ESP se conecte ao
+          ROS e receba os comandos enviados pelos códigos do sistema.
+        </p>
+
+        <p>
+          Caso o pacote ainda não esteja instalado no sistema, ele pode ser
+          instalado com o comando abaixo:
+        </p>
+
+        <CodeBlock>{`sudo apt-get install ros-noetic-rosserial-python`}</CodeBlock>
+
+        <p>
+          Depois de iniciar o <strong>roscore</strong>, abra um novo terminal e
+          execute:
+        </p>
+
+        <CodeBlock>{`rosrun rosserial_python serial_node.py tcp 11411`}</CodeBlock>
+
+        <p>
+          Esse comando deixa o computador aguardando a conexão do ESP pela rede,
+          na porta <strong>11411</strong>. Quando a conexão é estabelecida, o ESP
+          passa a funcionar integrado ao ROS, recebendo os comandos necessários
+          para acionar os motores do robô.
+        </p>
+
+        <p>
+          Essa etapa é essencial para o controle pelo teclado{" "}
+          <strong>WASD</strong> e também para os códigos finais do sistema, como{" "}
+          <strong>goleiro.py</strong> e <strong>jogador.py</strong>. Sem esse
+          comando rodando, o ROS pode processar a câmera e calcular a estratégia,
+          mas os comandos não chegarão corretamente ao robô.
+        </p>
+
+        <div className="linkList">
+          <a
+            href="https://wiki.ros.org/rosserial_python"
+            target="_blank"
+            rel="noreferrer"
+          >
+            rosserial_python - ROS Wiki
+          </a>
+
+          <a
+            href="https://www.youtube.com/watch?v=Fc6qsprvia4&t=11s"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Vídeos de Teste e Explicativo de Apoio no YouTube
+          </a>
+        </div>
       </div>
     </section>
   );

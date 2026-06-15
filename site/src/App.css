@@ -682,3 +682,561 @@ body {
   background: #0f5132;
   color: white;
 }
+
+.recursosCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.recursoItem {
+  display: block;
+  text-decoration: none;
+  background: white;
+  border: 1px solid #d1e7d6;
+  border-radius: 24px;
+  padding: 26px 22px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+}
+
+.recursoItem:hover {
+  transform: translateY(-4px);
+  border-color: #198754;
+  background: #f7fcf8;
+}
+
+.recursoItem h3 {
+  color: #198754;
+  font-size: 1.1rem;
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.recursoItem p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+@media (max-width: 1100px) {
+  .recursosCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .recursosCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.secaoFluxograma {
+  text-align: center;
+}
+
+
+
+.fluxoCard {
+  flex: 1 1 260px;
+  max-width: 290px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcf8 100%);
+  border: 1px solid #d1e7d6;
+  border-radius: 24px;
+  padding: 24px 22px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+  text-align: left;
+  position: relative;
+}
+
+.fluxoCard:hover {
+  transform: translateY(-4px);
+  border-color: #198754;
+  box-shadow: 0 14px 30px rgba(25, 135, 84, 0.12);
+}
+
+.fluxoNumero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #198754, #20c997);
+  color: white;
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.25);
+}
+
+.fluxoCard h3 {
+  margin: 0 0 12px;
+  color: #0f5132;
+  font-size: 1.18rem;
+  line-height: 1.4;
+}
+
+.fluxoCard p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.fluxoSeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #198754;
+  min-width: 36px;
+}
+
+.destaqueFluxo {
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border-color: #198754;
+}
+
+.destaqueFluxo .fluxoNumero {
+  background: white;
+  color: #198754;
+  box-shadow: none;
+}
+
+.destaqueFluxo h3,
+.destaqueFluxo p {
+  color: white;
+}
+
+@media (max-width: 1100px) {
+  .fluxogramaProjeto {
+    gap: 16px;
+  }
+
+  .fluxoCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .fluxogramaProjeto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+
+  .fluxoCard {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+}
+
+.secaoFluxograma {
+  text-align: center;
+}
+
+.fluxoCard {
+  min-height: 280px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcf8 100%);
+  border: 1px solid #d1e7d6;
+  border-radius: 24px;
+  padding: 30px 24px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.fluxoCard:hover {
+  transform: translateY(-4px);
+  border-color: #198754;
+  box-shadow: 0 14px 30px rgba(25, 135, 84, 0.12);
+}
+
+.fluxoNumero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #198754, #20c997);
+  color: white;
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.25);
+}
+
+.fluxoCard h3 {
+  margin: 0 0 14px;
+  color: #0f5132;
+  font-size: 1.45rem;
+  line-height: 1.4;
+}
+
+.fluxoCard p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.9;
+  font-size: 1.03rem;
+}
+
+.destaqueFluxo {
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border-color: #198754;
+}
+
+.destaqueFluxo .fluxoNumero {
+  background: white;
+  color: #198754;
+  box-shadow: none;
+}
+
+.destaqueFluxo h3,
+.destaqueFluxo p {
+  color: white;
+}
+
+@media (max-width: 1100px) {
+  .linhaFluxo {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .setaHorizontal {
+    transform: rotate(90deg);
+    font-size: 2.6rem;
+  }
+
+  .curvaDescida {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .linhaCurva {
+    width: 0;
+    height: 0;
+    border: none;
+  }
+
+  .setaCurva {
+    font-size: 2.8rem;
+  }
+
+  .fluxoCard {
+    min-height: auto;
+  }
+}
+
+.secaoFluxograma {
+  text-align: center;
+}
+
+
+.fluxoCard {
+  min-height: 310px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcf8 100%);
+  border: 1px solid #d1e7d6;
+  border-radius: 26px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.fluxoCard:hover {
+  transform: translateY(-4px);
+  border-color: #198754;
+  box-shadow: 0 14px 32px rgba(25, 135, 84, 0.14);
+}
+
+.fluxoNumero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #198754, #20c997);
+  color: white;
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.25);
+}
+
+.destaqueFluxo .fluxoNumero {
+  background: white;
+  color: #198754;
+  box-shadow: none;
+}
+
+.destaqueFluxo h3,
+.destaqueFluxo p {
+  color: white;
+}
+
+@media (max-width: 1100px) {
+  .fluxoLinha {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .setaDireita {
+    transform: rotate(90deg);
+    font-size: 3rem;
+  }
+
+  .conectorDescida {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .linhaVertical {
+    display: none;
+  }
+
+  .setaBaixo {
+    margin: 0;
+    font-size: 3rem;
+  }
+
+  .fluxoCard {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .componenteCard {
+    grid-template-columns: 1fr;
+  }
+
+  .componenteCard img {
+    max-height: 220px;
+  }
+}
+
+.componentesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.componenteCard {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 32px;
+  align-items: stretch;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcf9 100%);
+  border: 1px solid #cfe5d4;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 10px 28px rgba(15, 81, 50, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.componenteCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(15, 81, 50, 0.12);
+}
+
+.componenteImagemBox {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  background: #ffffff;
+  border: 1px solid #d7e9db;
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.componenteImagemBox img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: contain;
+  display: block;
+  padding: 18px;
+}
+
+.componenteTexto {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.componenteTag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: #e9f7ef;
+  color: #198754;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.componenteTexto h4 {
+  margin: 0 0 18px;
+  color: #064e3b;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  font-weight: 900;
+}
+
+.componenteTexto p {
+  margin: 0 0 15px;
+  color: #243b53;
+  line-height: 1.85;
+  font-size: 1.04rem;
+  text-align: justify;
+}
+
+.componenteTexto p:last-child {
+  margin-bottom: 0;
+}
+
+.componenteTexto strong {
+  color: #173b57;
+  font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+  .componenteCard {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .componenteImagemBox {
+    min-height: 280px;
+  }
+
+  .componenteImagemBox img {
+    min-height: 280px;
+    padding: 16px;
+  }
+
+  .componenteTexto {
+    justify-content: flex-start;
+  }
+
+  .componenteTexto h4 {
+    font-size: 1.45rem;
+  }
+
+  .componenteTexto p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+.secaoFluxograma {
+  text-align: center;
+}
+
+.etapasProjetoGrid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.etapaProjetoCard {
+  min-height: 260px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcf9 100%);
+  border: 1px solid #cfe5d4;
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: left;
+  box-shadow: 0 10px 26px rgba(15, 81, 50, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.etapaProjetoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15, 81, 50, 0.12);
+  border-color: #198754;
+}
+
+.etapaNumero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #198754, #20c997);
+  color: white;
+  font-weight: 900;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.24);
+}
+
+.etapaProjetoCard h3 {
+  margin: 0 0 14px;
+  color: #0f5132;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 850;
+}
+
+.etapaProjetoCard p {
+  margin: 0;
+  color: #355164;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.etapaProjetoCard strong {
+  color: #173b57;
+  font-weight: 800;
+}
+
+.etapaDestaque {
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border-color: #198754;
+}
+
+.etapaDestaque .etapaNumero {
+  background: white;
+  color: #198754;
+  box-shadow: none;
+}
+
+.etapaDestaque h3,
+.etapaDestaque p,
+.etapaDestaque strong {
+  color: white;
+}
+
+@media (max-width: 1100px) {
+  .etapasProjetoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .etapasProjetoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .etapaProjetoCard {
+    min-height: auto;
+  }
+}

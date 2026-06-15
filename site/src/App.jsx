@@ -70,55 +70,75 @@ function App() {
         </p>
       </section>
 
-      <section className="grid" id="reproducao">
-        <div className="card">
-          <h3>1. Ambiente ROS</h3>
-          <p>
-            Instalação do ROS Noetic, configuração do workspace Catkin,
-            instalação do pacote usb_cam e testes no RViz.
-          </p>
-        </div>
+      <section className="secao secaoFluxograma" id="reproducao">
+  <p className="tag">Etapas do projeto</p>
 
-        <div className="card">
-          <h3>2. Teste de conexão</h3>
-          <p>
-            Antes do sistema completo, é possível testar a conexão entre o ROS e
-            o robô usando o código de controle pelo teclado WASD.
-          </p>
-        </div>
+  <h2>Etapas para montar e validar o sistema</h2>
 
-        <div className="card">
-          <h3>3. Teste de câmera</h3>
-          <p>
-            A câmera pode ser testada com o código de identificação de cor e
-            posição do objeto, validando se a imagem está sendo capturada.
-          </p>
-        </div>
+  <p>
+    A sequência abaixo resume as principais etapas para montar, configurar e
+    testar o projeto Very Small Size Soccer, desde a construção do campo até a
+    integração completa entre ROS, câmera e robô.
+  </p>
 
-        <div className="card">
-          <h3>4. Calibração HSV</h3>
-          <p>
-            O código de calibração permite ajustar as barras do HSV em tempo
-            real até isolar corretamente a cor da bola e dos marcadores do robô.
-          </p>
-        </div>
+  <div className="etapasProjetoGrid">
+    <div className="etapaProjetoCard">
+      <span className="etapaNumero">01</span>
+      <h3>Construção do campo e estrutura do robô</h3>
+      <p>
+        Montagem do campo físico conforme as regras da categoria IEEE Very Small
+    Size Soccer, modelagem da estrutura do robô, impressão 3D da carcaça e
+    organização interna dos componentes eletrônicos e mecânicos.
+      </p>
+    </div>
 
-        <div className="card">
-          <h3>5. Controle e estratégia</h3>
-          <p>
-            O sistema utiliza PID e estados como GO_TO_BALL, GO_TO_GOAL e
-            RETURN_TO_GOAL para controlar atacante e goleiro.
-          </p>
-        </div>
+    <div className="etapaProjetoCard">
+      <span className="etapaNumero">02</span>
+      <h3>Instalação do Ubuntu 20.04</h3>
+      <p>
+        Preparação do sistema operacional utilizado no projeto, escolhido por sua
+        compatibilidade com o ROS Noetic.
+      </p>
+    </div>
 
-        <div className="card">
-          <h3>6. Resultados</h3>
-          <p>
-            Os testes são acompanhados no RViz, permitindo observar trajetórias,
-            movimentação do robô e resposta das estratégias.
-          </p>
-        </div>
-      </section>
+    <div className="etapaProjetoCard">
+      <span className="etapaNumero">03</span>
+      <h3>Instalação do ROS Noetic</h3>
+      <p>
+        Instalação do ambiente ROS, configuração do workspace Catkin e preparação
+        da base do sistema.
+      </p>
+    </div>
+
+    <div className="etapaProjetoCard">
+      <span className="etapaNumero">04</span>
+      <h3>Teste de conexão do robô</h3>
+      <p>
+        Validação da comunicação entre o ROS e o robô usando{" "}
+        <strong>rosserial_python</strong> e o controle pelo teclado{" "}
+        <strong>WASD</strong>.
+      </p>
+    </div>
+
+    <div className="etapaProjetoCard">
+      <span className="etapaNumero">05</span>
+      <h3>Calibração de cores e câmera</h3>
+      <p>
+        Verificação do tópico da câmera com <strong>usb_cam</strong> e ajuste
+        das cores HSV para identificar corretamente a bola e o robô.
+      </p>
+    </div>
+
+    <div className="etapaProjetoCard etapaDestaque">
+      <span className="etapaNumero">06</span>
+      <h3>Integração do sistema completo</h3>
+      <p>
+        Execução conjunta do ROS, câmera, comunicação com o robô e algoritmos
+        finais, como <strong>goleiro.py</strong> ou <strong>jogador.py</strong>.
+      </p>
+    </div>
+  </div>
+</section>
 
       <CampoEstrutura />
 
@@ -129,49 +149,100 @@ function App() {
 
         <p>
           Os links abaixo reúnem parte da documentação utilizada para instalação
-          do ROS, configuração da câmera USB e entendimento dos pacotes
-          utilizados no projeto.
+          do ROS, configuração da câmera USB, comunicação com o ESP usando
+          rosserial_python e entendimento dos pacotes utilizados no projeto.
         </p>
 
-        <div className="lista">
+        <div className="recursosCards">
           <a
+            className="recursoItem"
             href="https://wiki.ros.org/Distributions"
             target="_blank"
             rel="noreferrer"
           >
-            Distributions - ROS Wiki
+            <h3>Distributions - ROS Wiki</h3>
+            <p>
+              Página com as distribuições do ROS e suas compatibilidades com as
+              versões do Ubuntu.
+            </p>
           </a>
 
           <a
+            className="recursoItem"
             href="https://wiki.ros.org/noetic/Installation/Ubuntu"
             target="_blank"
             rel="noreferrer"
           >
-            Instalação do ROS Noetic
+            <h3>Instalação do ROS Noetic</h3>
+            <p>
+              Documentação oficial com o passo a passo para instalar o ROS
+              Noetic no Ubuntu.
+            </p>
           </a>
 
           <a
+            className="recursoItem"
             href="https://wiki.ros.org/usb_cam"
             target="_blank"
             rel="noreferrer"
           >
-            usb_cam - ROS Wiki
+            <h3>usb_cam - ROS Wiki</h3>
+            <p>
+              Material oficial sobre o pacote usb_cam, utilizado para capturar a
+              imagem da câmera no ROS.
+            </p>
           </a>
 
           <a
+            className="recursoItem"
+            href="https://wiki.ros.org/rosserial_python"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <h3>rosserial_python - ROS Wiki</h3>
+            <p>
+              Documentação utilizada para realizar a comunicação entre o ROS e o
+              ESP no projeto.
+            </p>
+          </a>
+
+          <a
+            className="recursoItem"
             href="https://github.com/ros-drivers/usb_cam"
             target="_blank"
             rel="noreferrer"
           >
-            Repositório usb_cam
+            <h3>Repositório usb_cam</h3>
+            <p>
+              Repositório oficial do driver usb_cam, usado como apoio para
+              instalação e configuração.
+            </p>
           </a>
 
           <a
+            className="recursoItem"
+            href="https://www.youtube.com/watch?v=Fc6qsprvia4&t=11s"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <h3>Vídeo explicativo de apoio</h3>
+            <p>
+              Vídeo utilizado como apoio para entender melhor a conexão do robô
+              com o ROS.
+            </p>
+          </a>
+
+          <a
+            className="recursoItem"
             href="https://github.com/cesarauugusto/Categoria-Very-Small-Size-Soccer-IFCE-Sobral"
             target="_blank"
             rel="noreferrer"
           >
-            Repositório do projeto VSSS no GitHub
+            <h3>Repositório do projeto VSSS</h3>
+            <p>
+              Repositório principal com códigos, testes, estrutura do robô e
+              programas finais do projeto.
+            </p>
           </a>
         </div>
       </section>
